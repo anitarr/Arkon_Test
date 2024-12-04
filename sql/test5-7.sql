@@ -38,6 +38,27 @@ FROM
     
 SELECT * FROM mass_flat;
 
+/* Otra manera de hacerlo es creando una nueva columna en el esquema,
+una tabla temporal donde guardo el valor del avg de mass y luego hago un update
+con la consulta para actualizar el valor de la bandera según el promedio*/
+ALTER TABLE data_union ADD COLUMN flat INT;
+
+CREATE TEMPORARY TABLE temp_avg_mass AS
+SELECT AVG(mass) AS avg_mass FROM data_union;
+
+-- Desactivar el modo de actualización segura
+SET SQL_SAFE_UPDATES = 0;
+
+-- Ejecutar la actualización
+UPDATE data_union
+SET flat = CASE 
+    WHEN mass > (SELECT avg_mass FROM temp_avg_mass) THEN 1 
+    ELSE 0 
+END;
+
+-- Volver a activar el modo de actualización segura
+SET SQL_SAFE_UPDATES = 1;
+
 /*7 Calcular la altura promedio, la altura máxima y mínima por especie, mediante una sentencia SQL*/
 SELECT 
     species,
