@@ -1,0 +1,12 @@
+COUNT(*),skin_color,eye_color
+1,fair,brown
+1,tan,brown
+1,dark,brown
+1,pale,yellow
+1,orange,black
+2,yellow,blue
+2,fair,blue
+1,fair,blue-gray
+1,unknown,blue
+1,fair,hazel
+1,red,yellow
