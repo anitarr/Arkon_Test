@@ -1,11 +1,16 @@
-/*5 Generar una query de SQL que muestre la siguiente información, los nombres que tengan un
+/*
+Preguntas obligatorias en SQL
+
+5 Generar una query de SQL que muestre la siguiente información, los nombres que tengan un
 height arriba de 180 pero menor a 190, que cumplan la condición de ser male y el hair_color
-sea cualquiera menos “none”*/
+sea cualquiera menos “none”
+*/
 
 SELECT name FROM testdata.data_union
 WHERE height BETWEEN 180 AND 190 AND sex = 'male' AND hair_color!='none';
 
-/*6 Por medio de una sentencia SQL generar la siguiente bandera:
+/*
+6 Por medio de una sentencia SQL generar la siguiente bandera:
 1 <-> el mass está arriba del promedio
 0 <-> el mass es menor igual al promedi
 */
@@ -45,14 +50,14 @@ GROUP BY
     species;
 
 
-    /*Pregunta 2*/
-    SELECT DISTINCT starships FROM data_union;
+/*Pregunta 2*/
+SELECT DISTINCT starships FROM data_union;
 
-    /*Pregunta 3*/
-    SELECT COUNT(*), skin_color,eye_color FROM data_union group by skin_color, eye_color;
+/*Pregunta 3*/
+SELECT COUNT(*), skin_color,eye_color FROM data_union group by skin_color, eye_color;
 
-    /*Pregunta 4*/
-    SELECT name, COUNT(*) AS cantidad_duplicados
-    FROM data_union
-    GROUP BY name
-    HAVING COUNT(*) > 1;
+/*Pregunta 4*/
+SELECT name, COUNT(*) AS cantidad_duplicados
+FROM data_union
+GROUP BY name
+HAVING COUNT(*) > 1;

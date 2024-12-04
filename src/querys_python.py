@@ -57,3 +57,30 @@ name_counts.columns = ['Name', 'Count']
 duplicates = name_counts[name_counts['Count'] > 1]
 print(duplicates)
 
+print("-----5 .Filters in python------")
+filtered_df = df_union[
+    (df_union['height'] >= 180) &
+    (df_union['height'] <= 190) &
+    (df_union['sex'] == 'male') &
+    (df_union['hair_color'] != 'none')
+]
+# Select column 'name' and show results
+result = filtered_df['name']
+print(result)
+
+print("-----6 . flat about column 'mass'------")
+avg = df_union['mass'].mean()
+print("avg = ", avg)
+# create new column 'flat' and show results
+df_union['flat'] = df_union['mass'].apply(lambda x: 1 if x > avg else 0)
+mass_flat = df_union[['name', 'mass', 'flat']]
+print(mass_flat.head(25))
+
+print("-----7. Metrics column 'species'------")
+result = df_union.groupby('species').agg(
+    avg_height=('height', 'mean'),
+    max_height=('height', 'max'),
+    min_height=('height', 'min')
+).reset_index()
+
+print(result)
