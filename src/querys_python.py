@@ -32,9 +32,11 @@ print(df_union)
 print(df_union.info())
 
 #Aquí elimino los datos NAN y los duplicados
-df_union_dna = df_union.dropna()
-df_union_dna = df_union_dna.drop_duplicates()
+df_union_dna = df_union.dropna().drop_duplicates()
 print(df_union_dna)
+
+# Guardar el DataFrame como un archivo CSV
+df_union.to_csv('data_union.csv', index=False)
 
 #Para la unión también se utiliza el metodo merge() indicando la columna para la unión.
 #print("\n\n Union con el método merge()")
