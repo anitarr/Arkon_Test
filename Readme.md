@@ -7,6 +7,7 @@ docker pull postgres
 
 # Create and Run Postgres Container
 ```
-docker run -d --name postgresArkon -p 5432:5432 -e POSTGRES_PASSWORD=pass123 postgres
+docker run -d --name arkon_data -p 5432:5432 -e POSTGRES_PASSWORD=pass1234 postgres
 ```
 
+# execute 'postgresDB.ipynb'
