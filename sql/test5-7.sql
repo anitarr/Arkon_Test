@@ -147,3 +147,22 @@ SELECT name, COUNT(*) AS cantidad_duplicados
 FROM arkon_data.data_union
 GROUP BY name
 HAVING COUNT(*) > 1;
+
+-- Quitar los duplicados
+WITH duplicates AS (
+    SELECT 
+        id,
+        ROW_NUMBER() OVER (PARTITION BY name ORDER BY id) as row_num
+    FROM 
+        arkon_data.data_union du 
+)
+DELETE FROM arkon_data.data_union du 
+WHERE id IN (
+    SELECT id FROM duplicates WHERE row_num > 1
+);
+
+-- Quitar los valores null
+DELETE FROM arkon_data.data_union 
+WHERE columna1 IS NULL OR 
+    columna2 IS NULL OR
+    columna3 IS NULL
